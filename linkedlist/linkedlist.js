@@ -26,13 +26,21 @@ class LinkedList{
         let currentNode = this.head;
         let valueArr = [];
 
-        while(currentNode !== null){
+        while(currentNode){
             valueArr.push(`{${currentNode.value}} ->`);
             currentNode = currentNode.next;
         }
         let prettyList = valueArr.join(' ').toString();
 
         return `${prettyList} null`;
+    }
+
+    addToEnd(value){
+        let currentNode = this.head;
+        while(currentNode.next !== null){
+            currentNode = currentNode.next;
+        }
+        currentNode.next = new Node(value);
     }
 }
 
