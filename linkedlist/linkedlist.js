@@ -36,11 +36,27 @@ class LinkedList{
     }
 
     addToEnd(value){
+        if(!this.head){
+            this.head = new Node(value);
+            return;
+        }
         let currentNode = this.head;
         while(currentNode.next !== null){
             currentNode = currentNode.next;
         }
         currentNode.next = new Node(value);
+    }
+
+    reverse(){
+        let prev = null;
+        let current = this.head;
+        while(current !== null){
+            let temp = current.next;
+            current.next = prev;
+            prev = current;
+            current = temp;
+        }
+        this.head = prev;
     }
 }
 

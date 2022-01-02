@@ -29,3 +29,22 @@ test('should add last given value to the end of the linked list', ()=>{
     let expected = `{2} -> {1} -> {3} -> null`;
     expect(actual).toBe(expected);
 });
+
+test('should work even if it is the first node', ()=>{
+    const ll = new LinkedList();
+    ll.addToEnd(3);
+    let actual = ll.show();
+    let expected = `{3} -> null`;
+    expect(actual).toBe(expected);
+});
+
+test('should reverse Linked list', ()=>{
+    const ll = new LinkedList();
+    ll.insert(1);
+    ll.insert(2);
+    ll.insert(3);
+    ll.reverse();
+    let actual = ll.show();
+    let expected = `{1} -> {2} -> {3} -> null`;
+    expect(actual).toBe(expected);
+});
