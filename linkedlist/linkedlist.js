@@ -48,6 +48,9 @@ class LinkedList{
     }
 
     reverse(){
+        if(!this.head){
+            return false;
+        }
         let prev = null;
         let current = this.head;
         while(current !== null){
@@ -57,6 +60,22 @@ class LinkedList{
             current = temp;
         }
         this.head = prev;
+    }
+
+    zipLinkedList(other){
+        let thisHead = this.head;
+        let otherHead = other.head;
+        let leaderA = thisHead.next;
+        let leaderB = otherHead.next;
+        while(leaderA && leaderB){
+            thisHead.next = otherHead;
+            otherHead.next = leaderA;
+            thisHead = leaderA;
+            leaderA = leaderA.next;
+            thisHead.next = leaderB;
+            otherHead = leaderB;
+            leaderB = leaderB.next;
+        }
     }
 }
 

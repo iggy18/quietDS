@@ -48,3 +48,50 @@ test('should reverse Linked list', ()=>{
     let expected = `{1} -> {2} -> {3} -> null`;
     expect(actual).toBe(expected);
 });
+
+test('should zip two linked lists of equal length together', ()=>{
+    const lx = new LinkedList();
+    const lz = new LinkedList();
+
+    // lx == C -> B -> A -> null
+    lx.insert('a');
+    lx.insert('b');
+    lx.insert('c');
+
+    // lz == F -> E -> D -> null
+    lz.insert('d');
+    lz.insert('e');
+    lz.insert('f');
+
+    // lxz  == c -> f -> b -> e -> a -> d -> null
+    lx.zipLinkedList(lz);
+
+    let actual = lx.show()
+    let expected = '{c} -> {f} -> {b} -> {e} -> {a} -> {d} -> null';
+    expect(actual).toBe(expected);
+});
+
+
+test('should zip two linked lists of unequal length together', ()=>{
+    const lx = new LinkedList();
+    const lz = new LinkedList();
+
+    // lx == C -> B -> A -> Y -> Z ->null
+    lx.insert('z');
+    lx.insert('y');
+    lx.insert('a');
+    lx.insert('b');
+    lx.insert('c');
+
+    // lz == F -> E -> D -> null
+    lz.insert('d');
+    lz.insert('e');
+    lz.insert('f');
+
+    // lxz  == c -> f -> b -> e -> a -> d -> null
+    lx.zipLinkedList(lz);
+
+    let actual = lx.show();
+    let expected = '{c} -> {f} -> {b} -> {e} -> {a} -> {d} -> {a} -> {d} -> null';
+    expect(actual).toBe(expected);
+});
