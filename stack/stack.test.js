@@ -9,7 +9,7 @@ test('STACK: can instantiate an empty stack', ()=>{
     expect(actual).toBe(expected);
 });
 
-test('PUSH: can push value into stack', ()=>{
+test('PUSH: can push node into stack', ()=>{
     const s = new Stack();
     s.push('a');
     let actual = s.top.value;
@@ -17,7 +17,7 @@ test('PUSH: can push value into stack', ()=>{
     expect(actual).toBe(expected);
 });
 
-test('PUSH: can push multiple values into stack', ()=>{
+test('PUSH: can push multiple nodes into stack', ()=>{
     const s = new Stack();
     s.push('a');
     s.push('b');
@@ -56,7 +56,7 @@ test('POP: can push multiple values into stack, and pop one and get the value of
     s.push('a');
     s.push('b');
     s.push('c');
-    let actual = s.pop();
+    let actual = s.pop().value;
     let expected = 'c';
     expect(actual).toBe(expected);
 });

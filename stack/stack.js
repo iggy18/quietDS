@@ -1,4 +1,4 @@
-const { nullableTypeAnnotation } = require("@babel/types");
+const { tsConstructorType } = require("@babel/types")
 
 class Node{
     constructor(value=null){
@@ -7,41 +7,41 @@ class Node{
     }
 }
 
+
 class Stack{
-    constructor(value){
+    constructor(){
         this.top = null;
     }
+    //these are helper methods
+    isAnemptyStack(){
+        throw new Error('this stack is empty');
+    }
+    NewNodeIsTheNewTopOfTheStack(value){
+        let newNode = new Node(value);
+        newNode.next = this.top;
+        this.top = newNode;
+    }
+    isTheRemovedNode(){
+        let poppedNode = this.top;
+        this.top = this.top.next;
+        return poppedNode;
+    }
+    isTheNodeValue(){
+        return this.top.value;
+    }
+
+    //these are the actaul normal methods in a stack;
     push(value){
-        if(this.isEmpty()){ 
-            this.top = new Node(value);
-        } else {
-            let newNode = new Node(value);
-            newNode.next = this.top;
-            this.top = newNode;
-        }
+        (!this.top) ? this.top = new Node(value) : this.NewNodeIsTheNewTopOfTheStack(value);
     }
     pop(){
-        if(this.isEmpty()){
-            throw new Error('this stack is empty');
-        } else {
-            let popedVal = this.top.value;
-            this.top = this.top.next;
-            return popedVal;
-        }
+        return (this.isEmpty()) ? this.isAnemptyStack() : this.isTheRemovedNode(); 
     }
     peek(){
-        if(this.isEmpty()) {
-            throw new Error('this stack is empty');
-        } else {
-            return this.top.value;
-        }
+        return (this.isEmpty()) ? this.isAnemptyStack() : this.isTheNodeValue();
     }
     isEmpty(){
-        if (this.top === null){
-            return true;
-        } else {
-            return false;
-        }
+        return (this.top) ? false : true;
     }
 }
 
